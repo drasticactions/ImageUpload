@@ -1,0 +1,26 @@
+﻿// <copyright file="SettingsPage.xaml.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Autofac;
+using ImageUpload.Mobile.ViewModels;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace ImageUpload.Mobile.Pages
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SettingsPage : ContentPage
+    {
+        public SettingsPage()
+        {
+            this.InitializeComponent();
+            this.BindingContext = App.Container.Resolve<SettingsViewModel>();
+        }
+    }
+}
