@@ -25,6 +25,13 @@ namespace Drastic.Common.Forms.Tools
         }
 
         /// <inheritdoc/>
+        public Task PushModalPageAsync(object page)
+        {
+            MainThread.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PushModalAsync((Page)page).ConfigureAwait(false));
+            return Task.CompletedTask;
+        }
+
+        /// <inheritdoc/>
         public Task PushPageAsync(object currentPage, object page)
         {
             if (currentPage is Page formsPage)

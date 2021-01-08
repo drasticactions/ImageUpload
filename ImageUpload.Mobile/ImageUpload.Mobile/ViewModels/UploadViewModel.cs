@@ -11,8 +11,11 @@ using Drastic.Common.Interfaces;
 using Drastic.Common.Tools;
 using Drastic.Common.ViewModels;
 using ImageUpload.Mobile.Interfaces;
+using ImageUpload.Mobile.Pages;
+using ImageUpload.Mobile.Views;
 using Imgur.API.Authentication;
 using Imgur.API.Endpoints;
+using Xamarin.Forms;
 
 namespace ImageUpload.Mobile.ViewModels
 {
@@ -50,6 +53,7 @@ namespace ImageUpload.Mobile.ViewModels
 
             var imageEndpoint = new ImageEndpoint(this.client, this.httpClient);
             var imageUpload = await imageEndpoint.UploadImageAsync(image).ConfigureAwait(false);
+            await this.Navigation.PushModalPageAsync(new ImgurPage(imageUpload)).ConfigureAwait(false);
         }
     }
 }

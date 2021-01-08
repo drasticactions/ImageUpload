@@ -32,6 +32,13 @@ namespace Drastic.Common.Interfaces
         Task PushPageAsync(object currentPage, object page);
 
         /// <summary>
+        /// Push modal page to top.
+        /// </summary>
+        /// <param name="page">Page.</param>
+        /// <returns>Task.</returns>
+        Task PushModalPageAsync(object page);
+
+        /// <summary>
         /// Sets the main page of the application.
         /// </summary>
         /// <param name="page">Page to set as top level.</param>
