@@ -8,7 +8,7 @@
             HorizontalOptions="CenterAndExpand" 
             VerticalOptions="CenterAndExpand" >
             <StackLayout Margin="15">
-                <Image Source="{Binding Link}" MinimumHeightRequest="300" />
+                <Image Source="{Binding Link}" WidthRequest="300" />
                 <Entry IsEnabled="False" Text="{Binding Link}"></Entry>
                 <Button Clicked="Button_OnClicked" Text="Copy Link To Clipboard"/>
             </StackLayout>

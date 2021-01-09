@@ -10,6 +10,7 @@ using Drastic.Common.Interfaces;
 using Drastic.Common.ViewModels;
 using ImageUpload.Mobile.Interfaces;
 using Imgur.API.Authentication;
+using Imgur.API.Endpoints;
 using Imgur.API.Models;
 
 namespace ImageUpload.Mobile.ViewModels
@@ -19,8 +20,7 @@ namespace ImageUpload.Mobile.ViewModels
     /// </summary>
     public class ImageGalleryViewModel : BaseViewModel
     {
-        private ApiClient client;
-        private HttpClient httpClient;
+        private ImageEndpoint client;
         private ImageUpload.Mobile.Interfaces.IPopup popup;
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace ImageUpload.Mobile.ViewModels
         /// <param name="navigation">Navigation Handler.</param>
         public ImageGalleryViewModel(
             ImageUpload.Mobile.Interfaces.IPopup popup,
-            ApiClient client,
+            ImageEndpoint client,
             IPlatformProperties properties,
             IResourceHelper resource,
             IDatabase database,
@@ -45,7 +45,6 @@ namespace ImageUpload.Mobile.ViewModels
         {
             this.popup = popup;
             this.client = client;
-            this.httpClient = new HttpClient();
             this.Images = new ObservableCollection<IImage>();
         }
 

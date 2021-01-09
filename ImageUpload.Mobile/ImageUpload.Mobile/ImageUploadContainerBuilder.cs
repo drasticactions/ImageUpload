@@ -14,6 +14,7 @@ using ImageUpload.Mobile.Helpers;
 using ImageUpload.Mobile.Interfaces;
 using ImageUpload.Mobile.ViewModels;
 using Imgur.API.Authentication;
+using Imgur.API.Endpoints;
 
 namespace ImageUpload.Mobile
 {
@@ -41,7 +42,7 @@ namespace ImageUpload.Mobile
             builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<UploadViewModel>();
             builder.RegisterType<ImageGalleryViewModel>();
-            builder.RegisterInstance(new ApiClient(Secrets.ImgurApiClientKey)).SingleInstance();
+            builder.RegisterInstance(new ImageEndpoint(new ApiClient(Secrets.ImgurApiClientKey), new System.Net.Http.HttpClient())).SingleInstance();
             builder.RegisterType<ImageUploadPopup>().As<ImageUpload.Mobile.Interfaces.IPopup>().SingleInstance();
             return builder.Build();
         }

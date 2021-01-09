@@ -16,6 +16,7 @@ using ImageUpload.Mobile.Views;
 using Imgur.API.Authentication;
 using Imgur.API.Endpoints;
 using Imgur.API.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ImageUpload.Mobile.ViewModels
@@ -23,8 +24,7 @@ namespace ImageUpload.Mobile.ViewModels
     public class UploadViewModel : BaseViewModel
     {
         private AsyncCommand uploadImageCommand;
-        private ApiClient client;
-        private HttpClient httpClient;
+        private ImageEndpoint client;
         private ImageUpload.Mobile.Interfaces.IPopup popup;
 
         /// <summary>
@@ -37,12 +37,11 @@ namespace ImageUpload.Mobile.ViewModels
         /// <param name="database">Database.</param>
         /// <param name="error">Error Handler.</param>
         /// <param name="navigation">Navigation Handler.</param>
-        public UploadViewModel(ImageUpload.Mobile.Interfaces.IPopup popup, ApiClient client, IPlatformProperties properties, IResourceHelper resource, IDatabase database, IErrorHandler error, INavigationHandler navigation)
+        public UploadViewModel(ImageUpload.Mobile.Interfaces.IPopup popup, ImageEndpoint client, IPlatformProperties properties, IResourceHelper resource, IDatabase database, IErrorHandler error, INavigationHandler navigation)
             : base(properties, resource, database, error, navigation)
         {
             this.popup = popup;
             this.client = client;
-            this.httpClient = new HttpClient();
         }
 
         /// <summary>
@@ -65,19 +64,21 @@ namespace ImageUpload.Mobile.ViewModels
                 return;
             }
 
-            using (Forms9Patch.ActivityIndicatorPopup.Create())
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
-                var imageEndpoint = new ImageEndpoint(this.client, this.httpClient);
-                imageUpload = await imageEndpoint.UploadImageAsync(image).ConfigureAwait(false);
-                this.Database.SaveImage(imageUpload);
-            }
+                using (Forms9Patch.ActivityIndicatorPopup.Create())
+                {
+                    imageUpload = await this.client.UploadImageAsync(image).ConfigureAwait(false);
+                    this.Database.SaveImage(imageUpload);
+                }
 
-            if (imageUpload == null)
-            {
-                return;
-            }
+                if (imageUpload == null)
+                {
+                    return;
+                }
 
-            this.popup.SetContent(new ImgurView(imageUpload, this.Navigation), true);
+                this.popup.SetContent(new ImgurView(imageUpload, this.Navigation), true);
+            });
         }
     }
 }
