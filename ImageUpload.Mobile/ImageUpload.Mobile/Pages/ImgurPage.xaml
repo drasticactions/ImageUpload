@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ImageUpload.Mobile.Pages.ImgurPage">
+             xmlns:models="clr-namespace:Imgur.API.Models;assembly=Imgur.API"
+             x:Class="ImageUpload.Mobile.Pages.ImgurPage" x:DataType="models:IImage">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -9,9 +12,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ScrollView Grid.Row="0">
-                <StackLayout>
+                <StackLayout Margin="15">
+                    <Image Source="{Binding Link}" MinimumHeightRequest="300" />
                     <Entry IsEnabled="False" Text="{Binding Link, StringFormat='[img]{0}[/img]'}"></Entry>
-                    <Image Source="{Binding Link}" />
                 </StackLayout>
             </ScrollView>
             <Grid Grid.Row="1">

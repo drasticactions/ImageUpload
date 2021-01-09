@@ -25,13 +25,31 @@
     <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
         <Setter Property="BackgroundColor" Value="{DynamicResource DynamicBackgroundColor}" />
     </Style>
-
+    
+    <Style ApplyToDerivedTypes="True" TargetType="TableView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource DynamicBackgroundColor}" />
+    </Style>
+    
+    <Style TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="{DynamicResource DynamicBackgroundColor}" />
+    </Style>
+    
+    <Style TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="{DynamicResource DynamicBackgroundColor}" />
+    </Style>
+    
     <Style ApplyToDerivedTypes="True" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource DynamicTextColor}" />
     </Style>
 
     <Style ApplyToDerivedTypes="True" TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="{DynamicResource DynamicBackgroundColor}" />
+        
         <Setter Property="TextColor" Value="{DynamicResource DynamicTextColor}" />
+        
+        <Setter Property="TitleColor"
+                Value="{AppThemeBinding Dark={StaticResource BackgroundColorLight}, 
+                                    Light={StaticResource BackgroundColorDark}}" />
     </Style>
 
     <Style ApplyToDerivedTypes="True" TargetType="Switch">
@@ -64,5 +82,6 @@
     <Style ApplyToDerivedTypes="True" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColor}" />
         <Setter Property="TextColor" Value="{DynamicResource ButtonTextColor}" />
+        <Setter Property="Padding" Value="15" />
     </Style>
 </ResourceDictionary>

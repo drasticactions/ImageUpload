@@ -76,6 +76,15 @@ namespace ImageUpload.Mobile
             this.MainPage = new MainPage();
         }
 
+        /// <summary>
+        /// Gets the current pages background color.
+        /// </summary>
+        /// <returns>Xamarin Forms Color.</returns>
+        public static Xamarin.Forms.Color GetCurrentBackgroundColor()
+        {
+            return App.Current.MainPage.BackgroundColor;
+        }
+
         protected override void OnStart()
         {
         }

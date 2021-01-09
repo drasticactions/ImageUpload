@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Drastic.Common.Interfaces;
 using Foundation;
 using UIKit;
@@ -22,6 +23,9 @@ namespace Drastic.Forms.iOS
     public class iOSPlatformProperties : IPlatformProperties
 #pragma warning restore SA1300 // Element should begin with upper-case letter
     {
+        TaskCompletionSource<Stream> taskCompletionSource;
+        UIImagePickerController imagePicker;
+        
         /// <inheritdoc/>
         public bool IsDarkTheme
         {
@@ -100,7 +104,71 @@ namespace Drastic.Forms.iOS
 
         public System.Threading.Tasks.Task<Stream> PickImageAsync()
         {
-            throw new NotImplementedException();
+            // Create and define UIImagePickerController
+            this.imagePicker = new UIImagePickerController
+            {
+                SourceType = UIImagePickerControllerSourceType.PhotoLibrary,
+                MediaTypes = UIImagePickerController.AvailableMediaTypes(UIImagePickerControllerSourceType.PhotoLibrary),
+            };
+
+            // Set event handlers
+            this.imagePicker.FinishedPickingMedia += this.OnImagePickerFinishedPickingMedia;
+            this.imagePicker.Canceled += this.OnImagePickerCancelled;
+
+            // Present UIImagePickerController;
+            UIWindow window = UIApplication.SharedApplication.KeyWindow;
+            var viewController = window.RootViewController;
+            viewController.PresentViewController(imagePicker, true, null);
+
+            // Return Task object
+            this.taskCompletionSource = new TaskCompletionSource<Stream>();
+            return this.taskCompletionSource.Task;
+        }
+
+        private void OnImagePickerFinishedPickingMedia(object sender, UIImagePickerMediaPickedEventArgs args)
+        {
+            UIImage image = args.EditedImage ?? args.OriginalImage;
+
+            if (image != null)
+            {
+                // Convert UIImage to .NET Stream object
+                NSData data;
+                if (args.ReferenceUrl.PathExtension.Equals("PNG") || args.ReferenceUrl.PathExtension.Equals("png"))
+                {
+                    data = image.AsPNG();
+                }
+                else
+                {
+                    data = image.AsJPEG(1);
+                }
+
+                Stream stream = data.AsStream();
+
+                this.UnregisterEventHandlers();
+
+                // Set the Stream as the completion of the Task
+                this.taskCompletionSource.SetResult(stream);
+            }
+            else
+            {
+                this.UnregisterEventHandlers();
+                this.taskCompletionSource.SetResult(null);
+            }
+
+            this.imagePicker.DismissModalViewController(true);
+        }
+
+        private void OnImagePickerCancelled(object sender, EventArgs args)
+        {
+            this.UnregisterEventHandlers();
+            this.taskCompletionSource.SetResult(null);
+            this.imagePicker.DismissModalViewController(true);
+        }
+
+        private void UnregisterEventHandlers()
+        {
+            this.imagePicker.FinishedPickingMedia -= this.OnImagePickerFinishedPickingMedia;
+            this.imagePicker.Canceled -= this.OnImagePickerCancelled;
         }
     }
 }

@@ -14,9 +14,15 @@ using Xamarin.Forms.Xaml;
 
 namespace ImageUpload.Mobile.Pages
 {
+    /// <summary>
+    /// Settings Page.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SettingsPage"/> class.
+        /// </summary>
         public SettingsPage()
         {
             this.InitializeComponent();

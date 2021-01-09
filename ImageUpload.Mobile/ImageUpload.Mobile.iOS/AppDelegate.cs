@@ -26,6 +26,7 @@ namespace ImageUpload.Mobile.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Forms9Patch.iOS.Settings.Initialize(this);
             var builder = new ContainerBuilder();
             builder.RegisterType<iOSPlatformProperties>().As<IPlatformProperties>();
             this.LoadApplication(new App(builder));

@@ -8,6 +8,7 @@ using System.Text;
 using Autofac;
 using Drastic.Common.Forms.Tools;
 using Drastic.Common.Interfaces;
+using ImageUpload.Mobile.Controls;
 using ImageUpload.Mobile.Database;
 using ImageUpload.Mobile.Helpers;
 using ImageUpload.Mobile.Interfaces;
@@ -39,7 +40,9 @@ namespace ImageUpload.Mobile
             builder.RegisterType<ResourceHelper>().As<IResourceHelper>().SingleInstance();
             builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<UploadViewModel>();
+            builder.RegisterType<ImageGalleryViewModel>();
             builder.RegisterInstance(new ApiClient(Secrets.ImgurApiClientKey)).SingleInstance();
+            builder.RegisterType<ImageUploadPopup>().As<ImageUpload.Mobile.Interfaces.IPopup>().SingleInstance();
             return builder.Build();
         }
     }

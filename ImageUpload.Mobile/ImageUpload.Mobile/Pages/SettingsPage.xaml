@@ -1,25 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Settings"
              x:Class="ImageUpload.Mobile.Pages.SettingsPage">
     <ContentPage.Content>
         <TableView Intent="Settings">
-            <TableSection>
-                <SwitchCell Text="Use System Theme Settings:" On="{Binding UseSystemThemeSettings, Mode=TwoWay}" />
-                <SwitchCell Text="Use Dark Theme:" On="{Binding UseDarkMode, Mode=TwoWay}" />
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Custom Theme:" VerticalOptions="Center"></Label>
-                        <Picker ItemsSource="{Binding CustomThemeNames}"
-                                WidthRequest="100"
-                                IsEnabled="{Binding CanOverrideThemeSettings}"
-                                SelectedIndex="{Binding CustomTheme, Converter={StaticResource IntEnumConverter}}"
-                                HorizontalOptions="EndAndExpand"
-                                VerticalOptions="Center">
-                        </Picker>
-                    </StackLayout>
-                </ViewCell>
-            </TableSection>
+            <TableRoot>
+                <TableSection Title="Theme">
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                <Label Text="Use System Theme Settings:" VerticalOptions="Center"></Label>
+                                <Switch HorizontalOptions="EndAndExpand" VerticalOptions="Center"
+                                        IsToggled="{Binding UseSystemThemeSettings, Mode=TwoWay}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Horizontal" Padding="13, 0">
+                                <Label Text="Use Dark Theme:" VerticalOptions="Center"></Label>
+                                <Switch HorizontalOptions="EndAndExpand" VerticalOptions="Center"
+                                        IsEnabled="{Binding CanOverrideThemeSettings}"
+                                        IsToggled="{Binding UseDarkMode, Mode=TwoWay}" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                    <!-- <SwitchCell Text="Use System Theme Settings:" On="{Binding UseSystemThemeSettings, Mode=TwoWay}" /> -->
+                    <!-- <SwitchCell Text="Use Dark Theme:" On="{Binding UseDarkMode, Mode=TwoWay}" /> -->
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="12,0,12,0">
+                            <Label Text="Custom Theme:" VerticalOptions="Center"></Label>
+                            <Picker ItemsSource="{Binding CustomThemeNames}"
+                                    WidthRequest="100"
+                                    IsEnabled="{Binding CanOverrideThemeSettings}"
+                                    SelectedIndex="{Binding CustomTheme, Converter={StaticResource IntEnumConverter}}"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalOptions="Center">
+                            </Picker>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
         </TableView>
     </ContentPage.Content>
 </ContentPage>

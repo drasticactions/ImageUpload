@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageUpload.Mobile.Views.ImgurView">
+    <ContentView.Content>
+        <ScrollView 
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="CenterAndExpand" >
+            <StackLayout Margin="15">
+                <Image Source="{Binding Link}" MinimumHeightRequest="300" />
+                <Entry IsEnabled="False" Text="{Binding Link}"></Entry>
+                <Button Clicked="Button_OnClicked" Text="Copy Link To Clipboard"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

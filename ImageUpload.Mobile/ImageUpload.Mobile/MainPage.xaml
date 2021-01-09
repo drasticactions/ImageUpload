@@ -5,12 +5,45 @@
             x:Class="ImageUpload.Mobile.MainPage">
 
     <NavigationPage Title="Uploads">
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                Color="{AppThemeBinding Dark={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default},
+                    Light={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default}}"
+                FontFamily="FontAwesomeSolid"
+                Glyph=""
+                Size="20"
+            />
+        </NavigationPage.IconImageSource>
         <x:Arguments>
             <local:UploadPage />
         </x:Arguments>
     </NavigationPage>
     
+    <NavigationPage Title="Gallery">
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                Color="{AppThemeBinding Dark={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default},
+                    Light={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default}}"
+                FontFamily="FontAwesomeSolid"
+                Glyph=""
+                Size="20"
+            />
+        </NavigationPage.IconImageSource>
+        <x:Arguments>
+            <local:ImageGalleryPage />
+        </x:Arguments>
+    </NavigationPage>
+    
     <NavigationPage Title="Settings">
+        <NavigationPage.IconImageSource>
+            <FontImageSource
+                Color="{AppThemeBinding Dark={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default},
+                    Light={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default}}"
+                FontFamily="FontAwesomeSolid"
+                Glyph=""
+                Size="20"
+            />
+        </NavigationPage.IconImageSource>
         <x:Arguments>
             <local:SettingsPage />
         </x:Arguments>

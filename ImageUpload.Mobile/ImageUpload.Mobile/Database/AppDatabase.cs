@@ -9,6 +9,7 @@ using System.Text;
 using Drastic.Common.Interfaces;
 using ImageUpload.Mobile.Entities.Settings;
 using ImageUpload.Mobile.Interfaces;
+using Imgur.API.Models;
 using LiteDB;
 
 namespace ImageUpload.Mobile.Database
@@ -19,6 +20,7 @@ namespace ImageUpload.Mobile.Database
     public class AppDatabase : IDatabase, IDisposable
     {
         private const string OptionsDB = nameof(OptionsDB);
+        private const string ImageDB = nameof(ImageDB);
         private readonly IPlatformProperties properties;
         private readonly LiteDatabase db;
         private bool isDisposed;
@@ -58,6 +60,27 @@ namespace ImageUpload.Mobile.Database
         {
             var collection = this.db.GetCollection<AppSettings>(OptionsDB);
             return collection.Upsert(appSettings);
+        }
+
+        /// <inheritdoc/>
+        public bool SaveImage(IImage image)
+        {
+            var collection = this.db.GetCollection<IImage>(ImageDB);
+            return collection.Upsert(image);
+        }
+
+        /// <inheritdoc/>
+        public int SaveImages(List<IImage> images)
+        {
+            var collection = this.db.GetCollection<IImage>(ImageDB);
+            return collection.Upsert(images);
+        }
+
+        /// <inheritdoc/>
+        public IEnumerable<IImage> GetImages()
+        {
+            var collection = this.db.GetCollection<IImage>(ImageDB);
+            return collection.FindAll();
         }
 
         /// <inheritdoc/>
