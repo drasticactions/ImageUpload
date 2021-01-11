@@ -19,7 +19,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -88,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ImageUpload.Mobile\ImageUpload.Mobile.csproj">
-      <Project>{E8057B2D-BAFF-4BE1-8A48-A6D05BBAAAE6}</Project>
+      <Project>{464A7311-E021-4903-8ADB-CC4BDD139360}</Project>
       <Name>ImageUpload.Mobile</Name>
     </ProjectReference>
   </ItemGroup>

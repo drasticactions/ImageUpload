@@ -76,7 +76,7 @@ namespace ImageUpload.Mobile
                 }
             }
 
-            if (Device.Idiom == TargetIdiom.Desktop)
+            if (Device.Idiom == TargetIdiom.Desktop || Device.Idiom == TargetIdiom.Tablet)
             {
                 this.MainPage = new MainFlyoutPage(GenerateMenuItems(), GenerateSettingsItem());
             }
