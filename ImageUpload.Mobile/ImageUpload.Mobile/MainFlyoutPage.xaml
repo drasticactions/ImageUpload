@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageUpload.Mobile.MainFlyoutPage">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="REMOVE ME">
+            <StackLayout>
+                <ListView x:Name="listView" 
+                      ItemsSource="{Binding MainMenuItems}" 
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                      SelectionMode="Single" 
+                      x:FieldModifier="public">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Margin="5" WidthRequest="30" Source="{Binding IconImageSource}" HeightRequest="30"/>
+                                    <Label Grid.Column="1" VerticalOptions="Center" Text="{Binding Title}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button 
+                    Command="{Binding SelectFooterCommand}"
+                    IsVisible="{Binding IsFooterVisible}" 
+                    Text="{Binding FooterMenu.Title}" 
+                    ImageSource="{Binding FooterMenu.IconImageSource}" />
+            </StackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+</FlyoutPage>

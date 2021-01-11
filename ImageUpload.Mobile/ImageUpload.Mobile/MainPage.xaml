@@ -5,6 +5,9 @@
             x:Class="ImageUpload.Mobile.MainPage">
 
     <NavigationPage Title="Uploads">
+        <x:Arguments>
+            <local:UploadPage />
+        </x:Arguments>
         <NavigationPage.IconImageSource>
             <FontImageSource
                 Color="{AppThemeBinding Dark={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default},
@@ -14,12 +17,12 @@
                 Size="20"
             />
         </NavigationPage.IconImageSource>
-        <x:Arguments>
-            <local:UploadPage />
-        </x:Arguments>
     </NavigationPage>
     
     <NavigationPage Title="Gallery">
+        <x:Arguments>
+            <local:ImageGalleryPage />
+        </x:Arguments>
         <NavigationPage.IconImageSource>
             <FontImageSource
                 Color="{AppThemeBinding Dark={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default},
@@ -29,12 +32,12 @@
                 Size="20"
             />
         </NavigationPage.IconImageSource>
-        <x:Arguments>
-            <local:ImageGalleryPage />
-        </x:Arguments>
     </NavigationPage>
     
     <NavigationPage Title="Settings">
+        <x:Arguments>
+            <local:SettingsPage />
+        </x:Arguments>
         <NavigationPage.IconImageSource>
             <FontImageSource
                 Color="{AppThemeBinding Dark={OnPlatform Android={StaticResource TextColorDark}, iOS=Default, Default=Default},
@@ -44,9 +47,6 @@
                 Size="20"
             />
         </NavigationPage.IconImageSource>
-        <x:Arguments>
-            <local:SettingsPage />
-        </x:Arguments>
     </NavigationPage>
 
 

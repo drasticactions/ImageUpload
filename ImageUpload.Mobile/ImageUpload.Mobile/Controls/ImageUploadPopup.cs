@@ -1,9 +1,16 @@
+// <copyright file="ImageUploadPopup.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
 using System;
 using Forms9Patch;
 using IPopup = ImageUpload.Mobile.Interfaces.IPopup;
 
 namespace ImageUpload.Mobile.Controls
 {
+    /// <summary>
+    /// Image Upload Popup.
+    /// </summary>
     public class ImageUploadPopup : IPopup, IDisposable
     {
         private ModalPopup popup;

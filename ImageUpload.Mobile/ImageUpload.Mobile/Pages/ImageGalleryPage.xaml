@@ -5,7 +5,11 @@
              Title="Gallery"
              x:Class="ImageUpload.Mobile.Pages.ImageGalleryPage">
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Images}">
+        <CollectionView SelectionMode="Single"
+                        x:Name="ImageGalleryCollection"
+                        SelectionChangedCommand="{Binding ViewImageCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference ImageGalleryCollection}}"
+                        ItemsSource="{Binding Images}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  Span="5" />

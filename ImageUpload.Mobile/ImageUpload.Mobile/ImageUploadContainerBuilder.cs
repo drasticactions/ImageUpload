@@ -41,6 +41,7 @@ namespace ImageUpload.Mobile
             builder.RegisterType<ResourceHelper>().As<IResourceHelper>().SingleInstance();
             builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<UploadViewModel>();
+            builder.RegisterType<FlyoutPageViewModel>();
             builder.RegisterType<ImageGalleryViewModel>();
             builder.RegisterInstance(new ImageEndpoint(new ApiClient(Secrets.ImgurApiClientKey), new System.Net.Http.HttpClient())).SingleInstance();
             builder.RegisterType<ImageUploadPopup>().As<ImageUpload.Mobile.Interfaces.IPopup>().SingleInstance();

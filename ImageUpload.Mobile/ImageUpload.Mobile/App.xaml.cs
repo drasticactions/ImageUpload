@@ -3,11 +3,14 @@
 // </copyright>
 
 using System;
+using System.Collections.Generic;
 using Autofac;
 using Drastic.Common.Forms.Tools;
 using Drastic.Common.Interfaces;
+using ImageUpload.Mobile.Entities.Menu;
 using ImageUpload.Mobile.Entities.Settings;
 using ImageUpload.Mobile.Interfaces;
+using ImageUpload.Mobile.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -73,7 +76,14 @@ namespace ImageUpload.Mobile
                 }
             }
 
-            this.MainPage = new MainPage();
+            if (Device.Idiom == TargetIdiom.Desktop)
+            {
+                this.MainPage = new MainFlyoutPage(GenerateMenuItems(), GenerateSettingsItem());
+            }
+            else
+            {
+                this.MainPage = new MainPage();
+            }
         }
 
         /// <summary>
@@ -95,6 +105,35 @@ namespace ImageUpload.Mobile
 
         protected override void OnResume()
         {
+        }
+
+        private static List<MainMenuItem> GenerateMenuItems()
+        {
+            return new List<MainMenuItem>()
+            {
+                new MainMenuItem()
+                {
+                    Title = "Uploads",
+                    Page = new UploadPage(),
+                    IconImageSource = ImageSourceHelper.GenerateFontImageSource("FontAwesomeSolid", ""),
+                },
+                new MainMenuItem()
+                {
+                    Title = "Gallery",
+                    Page = new ImageGalleryPage(),
+                    IconImageSource = ImageSourceHelper.GenerateFontImageSource("FontAwesomeSolid", ""),
+                },
+            };
+        }
+
+        private static MainMenuItem GenerateSettingsItem()
+        {
+            return new MainMenuItem()
+            {
+                Title = "Settings",
+                Page = new SettingsPage(),
+                IconImageSource = ImageSourceHelper.GenerateFontImageSource("FontAwesomeSolid", ""),
+            };
         }
     }
 }
