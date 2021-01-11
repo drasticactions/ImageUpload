@@ -2,6 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title="Gallery"
              x:Class="ImageUpload.Mobile.Pages.ImageGalleryPage">
     <ContentPage.Content>
@@ -16,10 +17,11 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Image
-                        Aspect="AspectFill" 
-                        HeightRequest="75" 
-                        Source="{Binding Link}"/>
+                    <ffimageloading:CachedImage Aspect="AspectFill"
+                    HeightRequest="75"
+                    DownsampleToViewSize="true"
+                    Source="{Binding Link}">
+                    </ffimageloading:CachedImage>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

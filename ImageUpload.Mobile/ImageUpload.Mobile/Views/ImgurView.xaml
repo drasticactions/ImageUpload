@@ -2,13 +2,17 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="ImageUpload.Mobile.Views.ImgurView">
     <ContentView.Content>
         <ScrollView 
             HorizontalOptions="CenterAndExpand" 
             VerticalOptions="CenterAndExpand" >
             <StackLayout Margin="15">
-                <Image Source="{Binding Link}" WidthRequest="300" />
+                <ffimageloading:CachedImage Aspect="AspectFill"
+                    HeightRequest="300"
+                    DownsampleToViewSize="False"
+                    Source="{Binding Link}"/>
                 <Entry IsEnabled="False" Text="{Binding Link}"></Entry>
                 <Button Clicked="Button_OnClicked" Text="Copy Link To Clipboard"/>
             </StackLayout>

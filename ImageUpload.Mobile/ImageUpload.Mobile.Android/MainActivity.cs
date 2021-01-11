@@ -13,6 +13,7 @@ using Android.Runtime;
 using Autofac;
 using Drastic.Common.Interfaces;
 using Drastic.Forms.Android;
+using FFImageLoading.Forms.Platform;
 
 namespace ImageUpload.Mobile.Droid
 {
@@ -52,9 +53,12 @@ namespace ImageUpload.Mobile.Droid
             Instance = this;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(true);
+            CachedImageRenderer.InitImageViewHandler();
             Forms9Patch.Droid.Settings.Initialize(this);
             var builder = new ContainerBuilder();
             builder.RegisterType<AndroidPlatformProperties>().As<IPlatformProperties>();
+
             this.LoadApplication(new App(builder));
         }
 
