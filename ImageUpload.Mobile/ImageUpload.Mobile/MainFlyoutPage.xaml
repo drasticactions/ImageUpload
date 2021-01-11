@@ -8,22 +8,9 @@
                 <ListView x:Name="listView" 
                       ItemsSource="{Binding MainMenuItems}" 
                       SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
-                      SelectionMode="Single" 
+                      SelectionMode="Single"
+                      ItemTemplate="{StaticResource MainFlyoutTemplate}"
                       x:FieldModifier="public">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Padding="5,10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Margin="5" WidthRequest="30" Source="{Binding IconImageSource}" HeightRequest="30"/>
-                                    <Label Grid.Column="1" VerticalOptions="Center" Text="{Binding Title}" />
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
                 </ListView>
                 <Button 
                     Command="{Binding SelectFooterCommand}"
