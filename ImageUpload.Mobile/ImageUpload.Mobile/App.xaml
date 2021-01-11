@@ -5,6 +5,7 @@
              x:Class="ImageUpload.Mobile.App">
     <Application.Resources>
         <ResourceDictionary Source="Styles/ImageUploadBaseStyles.xaml"/>
+        <ResourceDictionary Source="Styles/ImageUploadDataTemplates.xaml"/>
         <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
         <converters:IntEnumConverter x:Key="IntEnumConverter"/>
     </Application.Resources>
