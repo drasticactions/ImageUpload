@@ -26,6 +26,7 @@ namespace ImageUpload.Mobile.ViewModels
         private ImageEndpoint client;
         private ImageUpload.Mobile.Interfaces.IPopup popup;
         private AsyncCommand<IImage> viewImageCommand;
+        private IImage selectedImage;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageGalleryViewModel"/> class.
@@ -50,6 +51,25 @@ namespace ImageUpload.Mobile.ViewModels
             this.popup = popup;
             this.client = client;
             this.Images = new ObservableCollection<IImage>();
+        }
+
+        /// <summary>
+        /// Gets or sets the selected image in the gallery.
+        /// Resets the image after selecting.
+        /// </summary>
+        public IImage SelectedImage
+        {
+            get => this.selectedImage;
+            set
+            {
+                this.SetProperty(ref this.selectedImage, value);
+                if (value != null)
+                {
+#pragma warning disable CA2011 // Avoid infinite recursion
+                    this.SelectedImage = null;
+#pragma warning restore CA2011 // Avoid infinite recursion
+                }
+            }
         }
 
         /// <summary>

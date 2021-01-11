@@ -9,7 +9,7 @@
             HorizontalOptions="CenterAndExpand" 
             VerticalOptions="CenterAndExpand" >
             <StackLayout Margin="15">
-                <ffimageloading:CachedImage Aspect="AspectFill"
+                <ffimageloading:CachedImage
                     HeightRequest="300"
                     DownsampleToViewSize="False"
                     Source="{Binding Link}"/>

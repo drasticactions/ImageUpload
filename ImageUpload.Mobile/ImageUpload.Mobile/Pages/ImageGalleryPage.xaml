@@ -8,6 +8,7 @@
     <ContentPage.Content>
         <CollectionView SelectionMode="Single"
                         x:Name="ImageGalleryCollection"
+                        SelectedItem="{Binding SelectedImage, Mode=TwoWay}"
                         SelectionChangedCommand="{Binding ViewImageCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference ImageGalleryCollection}}"
                         ItemsSource="{Binding Images}">
@@ -20,8 +21,7 @@
                     <ffimageloading:CachedImage Aspect="AspectFill"
                     HeightRequest="75"
                     DownsampleToViewSize="true"
-                    Source="{Binding Link}">
-                    </ffimageloading:CachedImage>
+                    Source="{Binding Link}"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
