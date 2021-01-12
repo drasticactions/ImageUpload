@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ImageUpload.Mobile.Styles.ImageUploadDataTemplates">
-    <DataTemplate x:Key="MainFlyoutTemplate">
+                    xmlns:menu="clr-namespace:ImageUpload.Mobile.Entities.Menu"
+                    x:Class="ImageUpload.Mobile.Styles.ImageUploadDataTemplates">
+    <DataTemplate x:DataType="menu:MainMenuItem" x:Key="MainFlyoutTemplate">
         <ViewCell>
             <Grid Padding="5,10">
                 <Grid.ColumnDefinitions>
